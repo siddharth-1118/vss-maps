@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* ─── CSS Custom Properties ──────────────────────────────────────────── */
+:root {
+  --glass-bg: rgba(15, 23, 42, 0.85);
+  --glass-border: rgba(148, 163, 184, 0.08);
+  --glass-hover: rgba(30, 41, 59, 0.9);
+  --accent-blue: #3b82f6;
+  --accent-indigo: #6366f1;
+  --accent-glow: rgba(59, 130, 246, 0.25);
+  --sidebar-width: 22rem;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #020617;
+}
+
+/* ─── Leaflet Map ────────────────────────────────────────────────────── */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #0f172a;
+  font-family: 'Inter', sans-serif;
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.05) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #94a3b8 !important;
+  border: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 18px !important;
+  transition: all 0.2s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #60a5fa !important;
+}
+
+.leaflet-control-scale-line {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.15) !important;
+  color: #94a3b8 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  border-radius: 6px !important;
+  padding: 3px 8px !important;
+}
+
+/* ─── Leaflet Popups ─────────────────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  padding: 0 !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06) !important;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.5;
+  color: #f1f5f9 !important;
+}
+
+.leaflet-popup-tip-container {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+.leaflet-popup-close-button {
+  color: #64748b !important;
+  font-size: 18px !important;
+  top: 8px !important;
+  right: 8px !important;
+  width: 24px !important;
+  height: 24px !important;
+  padding: 0 !important;
+  line-height: 24px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #f1f5f9 !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+
+/* ─── Attribution ────────────────────────────────────────────────────── */
+.leaflet-control-attribution {
+  background: rgba(8, 14, 28, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #475569 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  padding: 3px 8px !important;
+  border-radius: 8px 0 0 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.05) !important;
+  border-left: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.leaflet-control-attribution a {
+  color: #3b82f6 !important;
+}
+
+/* ─── Custom Scrollbars ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.8);
+}
+
+/* ─── Glassmorphism Utilities ────────────────────────────────────────── */
+/* NOTE: backdrop-filter on LARGE surfaces kills input responsiveness.
+   Only use it on small floating elements (modals, dropdowns, widgets). */
+.glass {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  /* Promote to own compositor layer so blur doesn't block main thread */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.glass-card {
+  background: rgba(22, 32, 50, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.07);
+}
+
+/* ─── Glow Effects ───────────────────────────────────────────────────── */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.25), 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.glow-blue:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ─── Premium Button Base ────────────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────── */
+@keyframes pinBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.05); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+/* float animation removed — continuous GPU animation blocks input events */
+
+.animate-pin { animation: pinBounce 2s infinite ease-in-out; }
+.animate-fade-in-up { animation: fadeInUp 0.3s ease-out forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.3s ease-out forwards; }
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.05) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ─── No Scrollbar ───────────────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Text Gradient ──────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Premium Tab Active ─────────────────────────────────────────────── */
+.tab-active {
+  background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(99,102,241,0.15));
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ─── Premium Input ──────────────────────────────────────────────────── */
+.input-premium {
+  background: rgba(22, 32, 50, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  color: #f1f5f9;
+  /* No transition on background — transitions during typing add latency */
+}
+.input-premium:focus {
+  background: rgba(22, 32, 50, 1);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+.input-premium::placeholder {
+  color: #475569;
+}
+
+/* ─── Leaflet Custom Marker ──────────────────────────────────────────── */
+.custom-map-pin, .user-location-pin { background: none !important; border: none !important; }
+
+/* ─── Sidebar — NO backdrop-filter (it's 97% opaque, blur is invisible and costly) */
+.sidebar-premium {
+  background: linear-gradient(180deg, #080e1c 0%, #0a1223 100%);
+  border-right: 1px solid rgba(148, 163, 184, 0.07);
+  box-shadow: 4px 0 40px rgba(0, 0, 0, 0.5);
+  /* Own compositor layer prevents sidebar repaints from touching map canvas */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+}
+
+/* ─── Header — NO backdrop-filter (it's 98% opaque, blur is wasted GPU time) */
+.header-premium {
+  background: linear-gradient(90deg, #080e1c 0%, #0c1428 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.07);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  /* Own compositor layer so header never triggers map repaint */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+}
+

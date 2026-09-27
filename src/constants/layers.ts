@@ -1,0 +1,73 @@
+import type { MapLayerConfig } from '../types/map';
+
+export const MAP_LAYERS: Record<string, MapLayerConfig> = {
+  osm: {
+    id: 'osm',
+    name: 'OpenStreetMap (Standard)',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19,
+    subdomains: ['a', 'b', 'c'],
+  },
+  satellite: {
+    id: 'satellite',
+    name: 'Esri World Imagery (Satellite)',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, USDA, USGS, AeroGRID, IGN, and GIS User Community',
+    maxZoom: 18,
+  },
+  dark: {
+    id: 'dark',
+    name: 'CartoDB Dark Matter',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 20,
+    subdomains: ['a', 'b', 'c', 'd'],
+  },
+  transit: {
+    id: 'transit',
+    name: 'ÖPNVKarte Public Transit Layer',
+    url: 'https://tile.memomaps.de/tilegen/{z}/{x}/{y}.png',
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Transit style &copy; memomaps.de',
+    maxZoom: 18,
+  },
+  cyclosm: {
+    id: 'cyclosm',
+    name: 'CyclOSM Cycling Routes',
+    url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 20,
+    subdomains: ['a', 'b', 'c'],
+  },
+  topo: {
+    id: 'topo',
+    name: 'OpenTopoMap (Topographic)',
+    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    attribution: 'Map data &copy; OpenStreetMap contributors | Style &copy; OpenTopoMap',
+    maxZoom: 17,
+    subdomains: ['a', 'b', 'c'],
+  },
+  railway: {
+    id: 'railway',
+    name: 'OpenRailwayMap (Global Rail Network)',
+    url: 'https://{s}.tile.openrailwaymap.org/standard/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openrailwaymap.org/">OpenRailwayMap</a> contributors',
+    maxZoom: 19,
+    subdomains: ['a', 'b', 'c'],
+  },
+  seamap: {
+    id: 'seamap',
+    name: 'OpenSeaMap (Nautical Charts)',
+    url: 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="http://www.openseamap.org">OpenSeaMap</a> contributors',
+    maxZoom: 18,
+  },
+  stamen_toner: {
+    id: 'stamen_toner',
+    name: 'Stamen High-Contrast Monochrome',
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; CARTO',
+    maxZoom: 19,
+    subdomains: ['a', 'b', 'c', 'd'],
+  },
+};
