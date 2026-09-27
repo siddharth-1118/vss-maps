@@ -7,6 +7,7 @@ import { MarkerModal } from './components/MarkerModal';
 import { ShareModal } from './components/ShareModal';
 import { StreetViewModal } from './components/StreetViewModal';
 import { SolarWidget } from './components/SolarWidget';
+import { LandingPage } from './components/LandingPage';
 import type {
   ActiveTab,
   MapLayerId,
@@ -30,6 +31,7 @@ import { calculateRoute, type TransportProfile } from './services/osrm';
 import { reverseGeocode } from './services/nominatim';
 
 export function App() {
+  const [showLanding, setShowLanding] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<ActiveTab>('search');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
@@ -287,6 +289,10 @@ export function App() {
     URL.revokeObjectURL(url);
   };
 
+  if (showLanding) {
+    return <LandingPage onLaunchApp={() => setShowLanding(false)} />;
+  }
+
   return (
     <div className="h-screen w-screen flex flex-col bg-[#020617] overflow-hidden font-sans antialiased">
       {/* Top Header */}
@@ -303,6 +309,7 @@ export function App() {
         onOpenStreetView={() => setStreetViewModalOpen(true)}
         onToggleSolar={() => setSolarOpen(!solarOpen)}
         solarOpen={solarOpen}
+        onOpenLanding={() => setShowLanding(true)}
       />
 
       {/* Main Body */}

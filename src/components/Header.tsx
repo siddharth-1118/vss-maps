@@ -29,10 +29,10 @@ interface HeaderProps {
   setIsDarkMode: (dark: boolean) => void;
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
-  onOpenShareModal: () => void;
   onOpenStreetView: () => void;
   onToggleSolar: () => void;
   solarOpen: boolean;
+  onOpenLanding?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -48,6 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenStreetView,
   onToggleSolar,
   solarOpen,
+  onOpenLanding,
 }) => {
   // ── Uncontrolled input: browser owns the display, React only reads value ──
   const inputRef = useRef<HTMLInputElement>(null);
@@ -127,7 +128,11 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="header-premium h-16 px-5 flex items-center justify-between z-30 relative">
       {/* Left: Branding */}
-      <div className="flex items-center gap-3 shrink-0">
+      <button
+        onClick={onOpenLanding}
+        title="View Landing Page"
+        className="flex items-center gap-3 shrink-0 text-left hover:opacity-90 transition-opacity"
+      >
         <div className="relative">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 via-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
             <Compass className="w-5 h-5 text-white" />
@@ -145,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
             OpenStreetMap · 100% Self-Owned
           </p>
         </div>
-      </div>
+      </button>
 
       {/* Center: Premium Search Bar */}
       <div className="flex-1 max-w-xl mx-6 relative" ref={dropdownRef}>

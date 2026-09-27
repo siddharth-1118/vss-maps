@@ -275,15 +275,27 @@ export const MapView: React.FC<MapViewProps> = ({
           </Marker>
         ))}
 
-        {/* Route Line & Waypoints */}
+        {/* Dual-Layer Glowing Neon Route Line */}
         {routeResult && routeResult.geometry.length > 0 && (
           <>
+            {/* Outer Glow Halo */}
             <Polyline
               positions={routeResult.geometry}
               pathOptions={{
-                color: '#3b82f6',
-                weight: 6,
-                opacity: 0.85,
+                color: '#06b6d4',
+                weight: 12,
+                opacity: 0.35,
+                lineCap: 'round',
+                lineJoin: 'round',
+              }}
+            />
+            {/* Inner Neon Core */}
+            <Polyline
+              positions={routeResult.geometry}
+              pathOptions={{
+                color: '#22d3ee',
+                weight: 5,
+                opacity: 0.95,
                 lineCap: 'round',
                 lineJoin: 'round',
               }}
@@ -395,6 +407,39 @@ export const MapView: React.FC<MapViewProps> = ({
           />
         )}
       </MapContainer>
+
+      {/* Futuristic Bottom Map HUD Bar */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[400] glass border border-white/[0.08] px-4 py-2 rounded-2xl shadow-2xl shadow-black/60 hidden md:flex items-center gap-4 text-xs select-none">
+        {/* Active Layer Pill */}
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-semibold text-white uppercase tracking-wider text-[10px]">{currentLayerConfig.name.split(' ')[0]}</span>
+        </div>
+
+        <div className="w-px h-3 bg-white/[0.08]" />
+
+        {/* Center Coords */}
+        <div className="flex items-center gap-1.5 font-mono text-[11px] text-slate-300">
+          <span className="text-slate-500">POS:</span>
+          <span>{mapCenter[0].toFixed(4)}°</span>
+          <span className="text-slate-600">,</span>
+          <span>{mapCenter[1].toFixed(4)}°</span>
+        </div>
+
+        <div className="w-px h-3 bg-white/[0.08]" />
+
+        {/* Zoom */}
+        <div className="font-mono text-[11px] text-blue-400 font-bold">
+          {zoom}x <span className="text-[9px] font-normal text-slate-500">ZOOM</span>
+        </div>
+
+        <div className="w-px h-3 bg-white/[0.08]" />
+
+        {/* Saved Pins Status */}
+        <div className="text-[11px] text-slate-400">
+          <span className="font-bold text-amber-400">{savedMarkers.length}</span> Pins Saved
+        </div>
+      </div>
     </div>
   );
 };
