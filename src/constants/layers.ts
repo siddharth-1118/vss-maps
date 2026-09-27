@@ -3,11 +3,10 @@ import type { MapLayerConfig } from '../types/map';
 export const MAP_LAYERS: Record<string, MapLayerConfig> = {
   osm: {
     id: 'osm',
-    name: 'CartoDB Voyager (Ultra-Fast OSM)',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 20,
-    subdomains: ['a', 'b', 'c', 'd'],
+    name: 'OpenStreetMap (Official Standard)',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19,
   },
   satellite: {
     id: 'satellite',
@@ -19,17 +18,17 @@ export const MAP_LAYERS: Record<string, MapLayerConfig> = {
   dark: {
     id: 'dark',
     name: 'CartoDB Dark Matter',
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 20,
+    maxZoom: 19,
     subdomains: ['a', 'b', 'c', 'd'],
   },
   transit: {
     id: 'transit',
-    name: 'CartoDB Positron (Light Transit)',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    name: 'CartoDB Positron (Light)',
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 20,
+    maxZoom: 19,
     subdomains: ['a', 'b', 'c', 'd'],
   },
   cyclosm: {
@@ -37,7 +36,7 @@ export const MAP_LAYERS: Record<string, MapLayerConfig> = {
     name: 'CyclOSM Cycling Routes',
     url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.cyclosm.org">CyclOSM</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 20,
+    maxZoom: 18,
     subdomains: ['a', 'b', 'c'],
   },
   topo: {
@@ -53,7 +52,7 @@ export const MAP_LAYERS: Record<string, MapLayerConfig> = {
     name: 'OpenRailwayMap (Global Rail Network)',
     url: 'https://{s}.tile.openrailwaymap.org/standard/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.openrailwaymap.org/">OpenRailwayMap</a> contributors',
-    maxZoom: 19,
+    maxZoom: 18,
     subdomains: ['a', 'b', 'c'],
   },
   seamap: {
@@ -65,8 +64,8 @@ export const MAP_LAYERS: Record<string, MapLayerConfig> = {
   },
   stamen_toner: {
     id: 'stamen_toner',
-    name: 'Stamen High-Contrast Monochrome',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    name: 'CartoDB Voyager (No Labels)',
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; CARTO',
     maxZoom: 19,
     subdomains: ['a', 'b', 'c', 'd'],
