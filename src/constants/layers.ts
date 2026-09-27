@@ -26,10 +26,11 @@ export const MAP_LAYERS: Record<string, MapLayerConfig> = {
   },
   transit: {
     id: 'transit',
-    name: 'ÖPNVKarte Public Transit Layer',
-    url: 'https://tile.memomaps.de/tilegen/{z}/{x}/{y}.png',
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Transit style &copy; memomaps.de',
-    maxZoom: 18,
+    name: 'CartoDB Positron (Light Transit)',
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom: 20,
+    subdomains: ['a', 'b', 'c', 'd'],
   },
   cyclosm: {
     id: 'cyclosm',

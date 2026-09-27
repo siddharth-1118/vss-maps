@@ -31,9 +31,12 @@ export function deleteMarkerFromStorage(id: string): SavedMarker[] {
   return updated;
 }
 
+import { MAP_LAYERS } from '../constants/layers';
+
 export function getStoredActiveLayer(): MapLayerId {
   try {
-    return (localStorage.getItem(STORAGE_KEYS.ACTIVE_LAYER) as MapLayerId) || 'osm';
+    const val = localStorage.getItem(STORAGE_KEYS.ACTIVE_LAYER) as MapLayerId;
+    return val && MAP_LAYERS[val] ? val : 'osm';
   } catch {
     return 'osm';
   }

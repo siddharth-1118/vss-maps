@@ -96,6 +96,7 @@ function MapController({
 }) {
   const map = useMap();
   useEffect(() => {
+    map.invalidateSize();
     map.flyTo(center, zoom, { duration: 0.5, easeLinearity: 0.25 });
   }, [center, zoom, map]);
   return null;
@@ -195,10 +196,6 @@ export const MapView: React.FC<MapViewProps> = ({
           attribution={currentLayerConfig.attribution}
           maxZoom={currentLayerConfig.maxZoom}
           subdomains={currentLayerConfig.subdomains || []}
-          keepBuffer={6}
-          updateWhenIdle={false}
-          updateWhenZooming={false}
-          crossOrigin="anonymous"
         />
 
         <ScaleControl position="bottomright" imperial={true} metric={true} />

@@ -306,7 +306,7 @@ export function App() {
       />
 
       {/* Main Body */}
-      <div className="flex-1 flex relative overflow-hidden">
+      <div className="flex-1 flex relative overflow-hidden h-[calc(100vh-4rem)] w-full">
         <Sidebar
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
