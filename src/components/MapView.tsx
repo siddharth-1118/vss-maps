@@ -151,7 +151,10 @@ export const MapView: React.FC<MapViewProps> = ({
     <div className="flex-1 h-full w-full relative z-1">
       {/* Live Weather Overlay — top-right */}
       <div className="absolute top-4 right-4 z-[400] pointer-events-auto">
-        <WeatherWidget lat={mapCenter[0]} lng={mapCenter[1]} />
+        <WeatherWidget
+          lat={Math.round(mapCenter[0] * 50) / 50}
+          lng={Math.round(mapCenter[1] * 50) / 50}
+        />
       </div>
 
       {/* Floating 360° Pegman Button — bottom-left */}

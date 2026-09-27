@@ -4,4 +4,15 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  server: {
+    host: true,
+    port: 5173,
+    watch: {
+      ignored: ['**/node_modules/**', '**/dist/**', '**/.git/**'],
+      usePolling: false,
+    },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'leaflet', 'react-leaflet', '@turf/turf'],
+  },
 })

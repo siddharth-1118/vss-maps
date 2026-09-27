@@ -20,13 +20,18 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({ lat, lng }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let active = true;
     const load = async () => {
-      setVisible(false);
       const data = await fetchWeatherForLocation(lat, lng);
-      setWeather(data);
-      setTimeout(() => setVisible(true), 100);
+      if (active && data) {
+        setWeather(data);
+        setVisible(true);
+      }
     };
     load();
+    return () => {
+      active = false;
+    };
   }, [lat, lng]);
 
   if (!weather) return null;
