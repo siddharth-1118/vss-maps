@@ -54,7 +54,7 @@ export interface RouteResult {
   steps: RouteStep[];
 }
 
-export type ActiveTab = 'search' | 'route' | 'saved' | 'measure' | 'geojson' | 'layers' | 'nearby' | 'weather' | 'share' | 'isochrone' | 'overlap' | 'solar';
+export type ActiveTab = 'search' | 'route' | 'saved' | 'measure' | 'geojson' | 'layers' | 'nearby' | 'weather' | 'share' | 'isochrone' | 'overlap' | 'solar' | 'mesh';
 
 export type MeasurementMode = 'none' | 'distance' | 'area';
 

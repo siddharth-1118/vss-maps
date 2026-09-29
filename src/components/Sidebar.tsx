@@ -20,6 +20,7 @@ import { LayerSelector } from './LayerSelector';
 import { NearbyPoiPanel } from './NearbyPoiPanel';
 import { IsochronePanel } from './IsochronePanel';
 import { OverlapPanel } from './OverlapPanel';
+import { OfflineMeshPanel } from './OfflineMeshPanel';
 import type { PoiResult } from '../services/overpass';
 import { Clock } from './Icons';
 
@@ -28,6 +29,7 @@ interface SidebarProps {
   onClose: () => void;
   activeTab: ActiveTab;
   setActiveTab: (tab: ActiveTab) => void;
+  onFlyToCoords?: (lat: number, lng: number) => void;
 
   selectedSearchResult: any | null;
   onAddSearchAsMarker: (result: any) => void;
@@ -78,6 +80,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose,
   activeTab,
   setActiveTab,
+  onFlyToCoords,
   selectedSearchResult,
   onAddSearchAsMarker,
   mapCenter,
@@ -119,6 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'nearby', label: 'Nearby', icon: <Sparkles className="w-3.5 h-3.5" />, accent: 'text-amber-400' },
     { id: 'isochrone', label: 'Isochrones', icon: <Clock className="w-3.5 h-3.5" />, accent: 'text-emerald-400' },
     { id: 'overlap', label: 'Spot Finder', icon: <Compass className="w-3.5 h-3.5" />, accent: 'text-violet-400' },
+    { id: 'mesh', label: 'Offline Mesh', icon: <Navigation className="w-3.5 h-3.5" />, accent: 'text-teal-400' },
     { id: 'saved', label: 'Saved', icon: <Bookmark className="w-3.5 h-3.5" /> },
     { id: 'measure', label: 'Measure', icon: <Ruler className="w-3.5 h-3.5" /> },
     { id: 'geojson', label: 'GeoJSON', icon: <FileCode className="w-3.5 h-3.5" /> },
@@ -217,6 +221,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* ── Overlap Spot Finder Tab ── */}
         {activeTab === 'overlap' && <OverlapPanel savedMarkers={savedMarkers} onCalculateIntersection={onCalculateIntersection} onClearIntersection={onClearIntersection} hasIntersection={hasIntersection} />}
+
+        {/* ── Offline Mesh Tab ── */}
+        {activeTab === 'mesh' && <OfflineMeshPanel mapCenter={mapCenter} onFlyToCoords={(lat, lng) => onFlyToCoords && onFlyToCoords(lat, lng)} />}
 
         {/* ── Saved Tab ── */}
         {activeTab === 'saved' && <SavedPlacesPanel markers={savedMarkers} onFlyToMarker={onFlyToMarker} onEditMarker={onEditMarker} onDeleteMarker={onDeleteMarker} onExportMarkers={onExportMarkers} />}

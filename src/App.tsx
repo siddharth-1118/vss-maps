@@ -319,6 +319,10 @@ export function App() {
           onClose={() => setSidebarOpen(false)}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          onFlyToCoords={(lat, lng) => {
+            setMapCenter([lat, lng]);
+            setZoom(15);
+          }}
 
           selectedSearchResult={selectedSearchResult}
           onAddSearchAsMarker={handleAddSearchAsMarker}

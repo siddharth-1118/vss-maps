@@ -119,6 +119,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'nearby', label: 'Nearby', icon: <Sparkles className="w-3.5 h-3.5" />, color: 'text-amber-400' },
     { id: 'isochrone', label: 'Isochrones', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-emerald-400' },
     { id: 'overlap', label: 'Spot Finder', icon: <Compass className="w-3.5 h-3.5" />, color: 'text-violet-400' },
+    { id: 'mesh', label: 'Offline Mesh', icon: <Navigation className="w-3.5 h-3.5" />, color: 'text-teal-400' },
     { id: 'saved', label: 'Saved', icon: <Bookmark className="w-3.5 h-3.5" /> },
     { id: 'measure', label: 'Measure', icon: <Ruler className="w-3.5 h-3.5" /> },
     { id: 'geojson', label: 'GeoJSON', icon: <FileCode className="w-3.5 h-3.5" /> },
