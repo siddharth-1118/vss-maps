@@ -6,6 +6,7 @@ import { MapView } from './components/MapView';
 import { MarkerModal } from './components/MarkerModal';
 import { ShareModal } from './components/ShareModal';
 import { StreetViewModal } from './components/StreetViewModal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { SolarWidget } from './components/SolarWidget';
 import { LandingPage } from './components/LandingPage';
 import type {
@@ -436,6 +437,14 @@ export function App() {
         onClose={() => setStreetViewModalOpen(false)}
         lat={mapCenter[0]}
         lng={mapCenter[1]}
+      />
+
+      {/* Mobile Bottom Dock Bar */}
+      <MobileBottomNav
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
       />
     </div>
   );

@@ -130,7 +130,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <aside className="sidebar-premium w-full sm:w-[22rem] flex flex-col h-[calc(100vh-4rem)] z-20 animate-slide-in-left shrink-0">
+    <aside className="sidebar-premium w-full sm:w-[22rem] flex flex-col h-[calc(100vh-4rem)] max-md:fixed max-md:top-16 max-md:left-0 max-md:right-0 max-md:bottom-16 max-md:z-[550] max-md:w-full max-md:h-auto z-20 animate-slide-in-left shrink-0">
       {/* Tab strip */}
       <div className="flex items-center gap-0.5 px-3 pt-3 pb-2 border-b border-white/[0.04]">
         <div className="flex items-center gap-0.5 flex-1 overflow-x-auto no-scrollbar">
